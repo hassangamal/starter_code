@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Cloudant Sample App</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="stylesheets/styles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
 
-    <head>
-        <title>NodeJS Starter Application</title>
-        <meta charset="utf-8">
-        <meta
-            http-equiv="X-UA-Compatible"
-            content="IE=edge"
-        >
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-        >
-        <link rel="stylesheet" href="stylesheets/style.css">
-    </head>
+  <body>
+    <div>
+      <form class="form-horizontal" method="GET" name="outcome" id="outcome">
+          <div>
+            <label for="newname"> Enter name to be added:</label>
+            <div >
+              <input
+                type="text"
+                autocomplete="off"
+                class="form-control"
+                id="newname"
+                placeholder="Enter Name"
+              />
+            </div>
+          </div>
 
-    <body>
-        <table>
-            <tbody>
-                <tr>
-                    <td style="width:30%;">
-                        <img
-                            class="newappIcon"
-                            src="images/newapp-icon.png"
-                        >
-                    </td>
-                    <td>
-                        <h1 id="message">Hello World!</h1>
-                        <h1>Hassan Gamal Abdelaal Kamal</h1>
-                        <h1>2014170173</h1>
-                        <p class='description'></p>
-                        Thanks for creating a
-                        <span class="blue">NodeJS Starter Application</span>
-                        .
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </body>
+          <div>
+            <div >
+              <button id="add_name_button" type="submit" class="btn btn-danger">
+                Add Name
+              </button>
+            </div>
+          </div>
+      </form>
+    </div>
 
+    <script>
+      $(document).ready(function() {
+        $("#add_name_button").click(function(e) {
+          e.preventDefault();
+          $.ajax({
+            url: "/add_name",
+            type: "GET",
+            dataType: "json",
+            data: { new_name: $("#newname").val() },
+            contentType: "application/json",
+            cache: true,
+            timeout: 5000,
+            complete: function() {
+              //called when complete
+              console.log("process complete");
+            },
+            success: function(data) {
+              $("#newname").val("");
+              $("#newname").attr("placeholder", "Enter Name");
+            },
+            error: function() {
+              console.log("process error");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

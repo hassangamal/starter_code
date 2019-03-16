@@ -1,8 +1,8 @@
 applications:
   - path: .
-    name: vy301-FirstApp-nodesample
+    name: vy301-7e6-nodesample
     environment_json: {}
     memory: 256M
     instances: 1
     disk_quota: 1024M
-    services: []
+    services: [Cloudant-t8]

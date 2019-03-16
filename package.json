@@ -1,5 +1,5 @@
 {
-	"name": "NodejsStarterApp",
+	"name": "cloudform",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -7,7 +7,14 @@
 	},
 	"dependencies": {
 		"express": "4.15.x",
-		"cfenv": "1.0.x"
+		"cfenv": "1.0.x",
+		"async": "*",
+		"cloudant": "1.7.1",
+		"body-parser": "1.13.3",
+		"request": "*",
+		"nano":"*",
+		"path": "*",
+		"json2csv": "*"
 	},
 	"repository": {},
 	"engines": {
